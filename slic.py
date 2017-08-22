@@ -17,15 +17,21 @@ args = vars(ap.parse_args())
 image = img_as_float(io.imread(args["image"]))
 
 # loop over the number of segments
-for numSegments in (20, 50, 100, 200):
+
+numSegments = [50, 100, 200]
+fig = plt.figure("Superpixels segments")
+ax = fig.add_subplot(len(numSegments) + 1, 1, 1)
+plt.axis("off")
+ax.imshow(image)
+for i in range(0, len(numSegments)):
     # apply SLIC and extract (approximately) the supplied number
     # of segments
-    segments = slic(image, n_segments=numSegments, sigma=1)
+    print numSegments[i]
+    segments = slic(image, n_segments=numSegments[i], sigma=0.5)
 
+    ax = fig.add_subplot(len(numSegments) + 1, 1, i+2)
     # show the output of SLIC
-    fig = plt.figure("Superpixels -- %d segments" % (numSegments))
-    ax = fig.add_subplot(1, 1, 1)
-    ax.imshow(mark_boundaries(image, segments))
+    ax.imshow(mark_boundaries(image, segments, color=(1, 0, 0), mode='outer'))
     plt.axis("off")
 
 # show the plots
