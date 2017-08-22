@@ -1,0 +1,3 @@
+### SLIC 
+---
+A Superpixel Algorithm
