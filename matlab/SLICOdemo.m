@@ -37,7 +37,7 @@
 clear
 close all
 img = imread('epi200.png');
-[labels, numlabels] = slicomex(img,100);%numlabels is the same as number of superpixels
+[labels, numlabels] = slicomex(img,200);%numlabels is the same as number of superpixels
 % imagesc(labels);
 color_rgb = [249, 87, 142];
 [img,edge] = mark_boundary(img,labels,color_rgb);
